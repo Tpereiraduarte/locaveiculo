@@ -18,7 +18,6 @@ class CreateAluguelsTable extends Migration
             $table->primary('id_aluguel');
             $table->uuid('usuario_id');
             $table->uuid('carro_id');
-            $table->string('carro_id');
             $table->string('valor');
             $table->timestamps();
         });
