@@ -38,11 +38,12 @@ class CarrosController extends Controller
      */
     public function store(Request $request)
     {
-        $validacao = $request->all();
         $dados = new Carro();
-        $dados->numero_norma = $request->numero_norma;
-        $dados->descricao =$request->descricao;
-        $dados->usuario_alteracao = Auth()->user()->nome;
+        $dados->modelo = $request->modelo;
+        $dados->ano = $request->ano;
+        $dados->fabricante = $request->fabricante;
+        $dados->placa = $request->placa;
+        $dados->imagem = $request->imagem;
         $dados->save();
         return redirect()->action('CarrosController@index')->with('success', 'Cadastrado com Sucesso!');
     }
@@ -53,7 +54,7 @@ class CarrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_carro)
     {
         return view('carro.edit');
     }
@@ -67,7 +68,7 @@ class CarrosController extends Controller
     public function edit($id_carro)
     {
         $dados = Carro::find($id_carro);
-        return view("norma.edit",compact('dados'));
+        return view("carro.edit",compact('dados'));
     }
 
     /**
@@ -80,9 +81,11 @@ class CarrosController extends Controller
     public function update(Request $request, $id_carro)
     {
         $dados = Carro::find($id_carro);
-        $dados->numero_norma = $request->numero_norma;
-        $dados->descricao =$request->descricao;
-        $dados->usuario_alteracao = Auth()->user()->nome;
+        $dados->modelo = $request->modelo;
+        $dados->ano = $request->ano;
+        $dados->fabricante = $request->fabricante;
+        $dados->placa = $request->placa;
+        $dados->imagem = $request->imagem;
         $dados->update();
         return redirect()->action('CarrosController@index')->with('success', 'Alterado com Sucesso!');    }
 
