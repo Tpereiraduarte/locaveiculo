@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carro;
+use App\Models\Categoria;
+use App\Models\CategoriaCarro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\CollectionCollection;
 
 class CategoriaCarrosController extends Controller
 {
@@ -13,7 +18,8 @@ class CategoriaCarrosController extends Controller
      */
     public function index()
     {
-        //
+        $dados = CategoriaCarro::all();
+        return view("categoriacarro.index",compact('dados'));
     }
 
     /**
@@ -23,7 +29,9 @@ class CategoriaCarrosController extends Controller
      */
     public function create()
     {
-        //
+        $carro  = Carro::all();
+        $categoria  = Categoria::all();
+        return view("categoriacarro.store",compact('carro','categoria'));
     }
 
     /**
@@ -34,7 +42,11 @@ class CategoriaCarrosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dados = new CategoriaCarro();
+        $dados->categoria_id = $request->categoria_id;
+        $dados->carro_id  = $request->carro_id;
+        $dados->save();
+        return redirect()->action('CategoriaCarrosController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
     /**
@@ -43,9 +55,9 @@ class CategoriaCarrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_categoria_carro)
     {
-        //
+        return view('categoriacarro.edit');
     }
 
     /**
@@ -54,9 +66,12 @@ class CategoriaCarrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_categoria_carro)
     {
-        //
+        $dados = CategoriaCarro::find($id_categoria_carro);
+        $carro  = Carro::all();
+        $categoria  = Categoria::all();
+        return view("categoriacarro.edit",compact('dados','carro','categoria'));
     }
 
     /**
@@ -66,9 +81,13 @@ class CategoriaCarrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_categoria_carro)
     {
-        //
+        $dados = CategoriaCarro::find($id_categoria_carro); 
+        $dados->categoria_id = $request->categoria_id;
+        $dados->carro_id  = $request->carro_id;
+        $dados->update();
+        return redirect()->action('CategoriaCarrosController@index')->with('success', 'Alterado com Sucesso!');
     }
 
     /**
@@ -77,8 +96,10 @@ class CategoriaCarrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_categoria_carro)
     {
-        //
+        $dados = CategoriaCarro::find($id_categoria_carro);
+        $dados->delete();
+        return redirect()->action('CategoriaCarrosController@index')->with('success', 'Excluído com Sucesso!');
     }
 }
