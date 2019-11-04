@@ -20,9 +20,9 @@ Route::group(['middleware'=>['auth']],function(){
         return redirect()->action('LoginController@index');            
     });
    
-    Route::resource('usuario', 'UsersController');    
-    Route::resource('categoria', 'CategoriasController');
-    Route::resource('carro', 'CarrosController');
-    Route::resource('aluguel', 'AluguelsController');
-    Route::resource('categoria_carro', 'CategoriaCarrosController');
 });
+Route::resource('usuario', 'UsersController');    
+Route::resource('categoria', 'CategoriasController');
+Route::resource('carro', 'CarrosController');
+Route::resource('aluguel', 'AluguelsController');
+Route::resource('categoria_carro', 'CategoriaCarrosController');

@@ -43,7 +43,14 @@ class CarrosController extends Controller
         $dados->ano = $request->ano;
         $dados->fabricante = $request->fabricante;
         $dados->placa = $request->placa;
-        $dados->imagem = $request->imagem;
+        if($request->imagem != null){
+            if($request->hasFile('imagem')){
+                $dados->imagem = $request->imagem;
+                $extensao = $dados->imagem->getMimeType();
+                $nome = time(). '.' .$dados->imagem->getClientOriginalName();
+                $upload = $dados->imagem->storeAs('fotos_carros',$nome);
+            }    
+        }
         $dados->save();
         return redirect()->action('CarrosController@index')->with('success', 'Cadastrado com Sucesso!');
     }
@@ -85,7 +92,15 @@ class CarrosController extends Controller
         $dados->ano = $request->ano;
         $dados->fabricante = $request->fabricante;
         $dados->placa = $request->placa;
-        $dados->imagem = $request->imagem;
+        if($request->imagem != null){
+            if($request->hasFile('imagem')){
+                $dados->imagem = $request->imagem;
+                $extensao = $dados->imagem->getMimeType();
+                $nome = time(). '.' .$dados->imagem->getClientOriginalName();
+                $upload = $dados->imagem->storeAs('fotos_carros',$nome);
+                $dados->imagem = $nome;
+            }
+        }
         $dados->update();
         return redirect()->action('CarrosController@index')->with('success', 'Alterado com Sucesso!');    }
 
