@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6">
-            <a id="list" href="{{URL::route('aluguel.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-file-text-o"></i> Novo Carro</a>
+            <a id="list" href="{{URL::route('aluguel.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-file-text-o"></i> CadastrarAluguel</a>
         </div> 
     </div>
 </div>

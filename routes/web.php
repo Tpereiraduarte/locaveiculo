@@ -11,8 +11,8 @@
 |
 */
 Route::get('/','InicioController@index');
-Route::post('/login','LoginController@login');
-Route::get('/','LoginController@index')->name('login');
+Route::post('admin/login','LoginController@login');
+Route::get('admin/','LoginController@index')->name('login');
 
 Route::group(['middleware'=>['auth']],function(){
     Route::get('/logout',function(){
@@ -25,4 +25,4 @@ Route::resource('usuario', 'UsersController');
 Route::resource('categoria', 'CategoriasController');
 Route::resource('carro', 'CarrosController');
 Route::resource('aluguel', 'AluguelsController');
-Route::resource('categoria_carro', 'CategoriaCarrosController');
+Route::resource('categoriacarro', 'CategoriaCarrosController');
