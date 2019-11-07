@@ -18,30 +18,24 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
+                        
                     <tr>
-                        <th>Modelo</th>
-                        <th>Ano</th>
-                        <th>Fabricante</th>
-                        <th>Placa</th>
+                        <th>Nome</th>
+                        <th>Capacidade de carga</th>
+                        <th>Passageiro</th>
+                        <th>Opcionais</th>
+                        <th>Valor da diária</th>
                         <th>Opções</th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th>Modelo</th>
-                        <th>Ano</th>
-                        <th>Fabricante</th>
-                        <th>Placa</th>
-                        <th>Opções</th>
-                    </tr>
-                    </tfoot>
                     <tbody>
                         @foreach($dados as $value)
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$value->nome}}</td>
+                        <td>{{$value->capacidade_carga}}</td>
+                        <td>{{$value->passageiro}}</td>
+                        <td>{{$value->opcionais}}</td>
+                        <td>{{$value->valor_diaria}}</td>
                         <td class="acoes-lista">
                             <a id="edit" href="{{URL::route('categoria.edit',$value->id_categoria)}}" title="Editar" class="fa fa-edit"></a>
                             <form action="{{ action('CategoriasController@destroy', $value->id_categoria) }}" method="POST">
