@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\CollectionCollection;
 
 class UsersController extends Controller
 {
@@ -13,7 +16,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $dados = User::all();
+        return view("usuario.index",compact('dados'));
     }
 
     /**
@@ -23,7 +27,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('usuario.store');
     }
 
     /**
@@ -34,7 +38,16 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuarios = new User;
+        $usuarios->nome             = $request->nome;
+        $usuarios->sobrenome        = $request->sobrenome;
+        $usuarios->cpf              = $request->cpf;
+        $usuarios->cnh              = $request->cnh;
+        $usuarios->email            = $request->email;  
+        $usuarios->password         = bcrypt($request['password']);                 
+        $usuarios->remember_token   = bcrypt($request['password']);
+        $usuarios->save();
+        return redirect()->action('UsersController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
     /**
@@ -54,9 +67,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_usuario)
     {
-        //
+        $dados = User::find($id_usuario);
+        return view("usuario.edit",compact('dados'));
     }
 
     /**
@@ -66,9 +80,17 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_usuario)
     {
-        //
+        $dados = User::find($id_usuario);
+        $dados->nome = $request->nome;
+        $dados->sobrenome = $request->sobrenome;
+        $dados->cpf = $request->cpf;
+        $dados->cnh = $request->cnh;
+        $dados->email = $request->email;
+        $dados->password = $request->password;
+        $dados->update();
+        return redirect()->action('UsersController@index')->with('success', 'Alterado com Sucesso!');     
     }
 
     /**
@@ -77,8 +99,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_usuario)
     {
-        //
+        $dados = User::find($id_usuario);
+        $dados->delete();
+        return redirect()->action('UsersController@index')->with('success', 'Excluído com Sucesso!');
     }
 }
