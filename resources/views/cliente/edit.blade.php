@@ -1,5 +1,5 @@
 @extends('painel.layout')
-@section('title','Edição de Usuário')
+@section('title','Edição de Clientes')
 @section('content')
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -14,15 +14,27 @@
         <div class="col-md-6">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Edição de usuário</h3>
+              <h3 class="box-title">Edição de Clientes</h3>
             </div>
-            <form role="form" action="{{ action('UsersController@update', $dados->id_usuario) }}" method="POST">
+            <form role="form" action="{{ action('ClientesController@update', $dados->id_cliente) }}" method="POST">
             @method('PUT')
             @csrf
               <div class="box-body">
                 <div class="form-group">
                   <label for="nome">Nome</label>
                   <input type="text" class="form-control" id="nome" placeholder="Digite o nome" name="nome" value="{{$dados->nome}}" maxlength="150" size="50" required>
+                </div>
+                <div class="form-group">
+                  <label for="sobrenome">Sobrenome</label>
+                  <input type="text" class="form-control" id="sobrenome" placeholder="Digite o sobrenome" name="sobrenome" value="{{$dados->sobrenome}}" maxlength="150" size="50" required>
+                </div>
+                <div class="form-group">
+                  <label for="cpf">CPF</label>
+                  <input type="text" class="form-control" id="cpf" placeholder="Digite o CPF - Somente números" name="cpf" value="{{$dados->cpf}}" maxlength="11" size="50" required>
+                </div>
+                <div class="form-group">
+                  <label for="cnh">CNH</label>
+                  <input type="text" class="form-control" id="cnh" placeholder="CNH" name="cnh" value="{{$dados->cnh}}" maxlength="9" size="50" required>
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
@@ -34,11 +46,11 @@
                 </div>
               </div>
               <div class="box-footer">
-                <a href="{{URL::route('usuario.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
+                <a href="{{URL::route('cliente.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
               </div>
             </form>
           </div>
-    </div>
+        </div>
 </div>
 @endsection

@@ -13,4 +13,9 @@ class Categoria extends Model
     protected $primaryKey = 'id_categoria';
     protected $fillable = ['nome','capacidade_carga','passageiro','opcionais','valor_diaria'];
     protected $table = 'categorias';
+
+
+ public function categoriacarro(){
+    	return $this->belongsTo(CategoriaCarro::class,'id_categoria','categoria_id');
+    }
 }

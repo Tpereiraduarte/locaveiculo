@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluguel;
+use App\Models\Carro;
+use App\Models\Cliente;
+use App\Models\Categoria;
+use App\Models\CategoriaCarro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\CollectionCollection;
@@ -27,7 +31,11 @@ class AluguelsController extends Controller
      */
     public function create()
     {
-        return view("aluguel.store");
+        $cliente = Cliente::all();
+        $categoria = Categoria::all();
+        $categoriacarro = CategoriaCarro::all();
+        $carro  = Carro::all();
+        return view("aluguel.store",compact('cliente','categoria','categoriacarro','carro'));
     }
 
     /**
@@ -41,9 +49,10 @@ class AluguelsController extends Controller
         $dados = new Aluguel();
         $dados->data_inicial = $request->data_inicial;
         $dados->data_final = $request->data_final;
-        $dados->valor = $request->valor;
-        $dados->usuario_id = $request->usuario_id;
+        $dados->cliente_id = $request->cliente_id;
+        $dados->categoria_id = $request->categoria_id;
         $dados->carro_id = $request->carro_id;
+        $dados->valor = $request->valor;
         $dados->save();
         return redirect()->action('AluguelsController@index')->with('success', 'Cadastrado com Sucesso!');
     }
@@ -83,9 +92,10 @@ class AluguelsController extends Controller
         $dados = Aluguel::find($id_aluguel);
         $dados->data_inicial = $request->data_inicial;
         $dados->data_final = $request->data_final;
-        $dados->valor = $request->valor;
-        $dados->usuario_id = $request->usuario_id;
+        $dados->cliente_id = $request->cliente_id;
+        $dados->categoria_id = $request->categoria_id;
         $dados->carro_id = $request->carro_id;
+        $dados->valor = $request->valor;
         $dados->update();
         return redirect()->action('AluguelsController@index')->with('success', 'Alterado com Sucesso!');    }
 

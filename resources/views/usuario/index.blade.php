@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6">
-            <a id="list" href="{{URL::route('usuario.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-file-text-o"></i> Novo Usuário</a>
+            <a id="list" href="{{URL::route('usuario.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-file-text"></i> Novo Usuário</a>
         </div> 
     </div>
 </div>
@@ -20,32 +20,15 @@
                     <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Sobrenome</th>
-                        <th>CPF</th>
-                        <th>CNH</th>
                         <th>Email</th>
-                        <th>Senha</th>
+                        <th>Opções</th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Sobrenome</th>
-                        <th>CPF</th>
-                        <th>CNH</th>
-                        <th>Email</th>
-                        <th>Senha</th>
-                    </tr>
-                    </tfoot>
                     <tbody>
                         @foreach($dados as $value)
                     <tr>
                         <td>{{$value->nome}}</td>
-                        <td>{{$value->sobrenome}}</td>
-                        <td>{{$value->cpf}}</td>
-                        <td>{{$value->cnh}}</td>
                         <td>{{$value->email}}</td>
-                        <td>{{$value->senha}}</td>
                         <td class="acoes-lista">
                             <a id="edit" href="{{URL::route('usuario.edit',$value->id_usuario)}}" title="Editar" class="fa fa-edit"></a>
                             <form action="{{ action('UsersController@destroy', $value->id_usuario) }}" method="POST">
@@ -64,7 +47,7 @@
 </div>
 @else
     <div class="sem-dados">
-        <span class="sem-dados">Não há Carros Cadastrados</span>
+        <span class="sem-dados">Não há usuários Cadastrados</span>
     </div>    
 @endif
 

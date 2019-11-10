@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\CollectionCollection;
 
-class UsersController extends Controller
+class ClientesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $dados = User::all();
-        return view("usuario.index",compact('dados'));
+        $dados = Cliente::all();
+        return view("cliente.index",compact('dados'));
     }
 
     /**
@@ -27,7 +27,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('usuario.store');
+        return view('cliente.store');
     }
 
     /**
@@ -38,13 +38,15 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $usuarios = new User;
-        $usuarios->nome             = $request->nome;
-        $usuarios->email            = $request->email;  
-        $usuarios->password         = bcrypt($request['password']);                 
-        $usuarios->remember_token   = bcrypt($request['password']);
-        $usuarios->save();
-        return redirect()->action('UsersController@index')->with('success', 'Cadastrado com Sucesso!');
+        $clientes = new Cliente;
+        $clientes->nome             = $request->nome;
+        $clientes->sobrenome        = $request->sobrenome;
+        $clientes->cpf              = $request->cpf;
+        $clientes->cnh              = $request->cnh;
+        $clientes->email            = $request->email;  
+        $clientes->password         = bcrypt($request['password']);                 
+        $clientes->save();
+        return redirect()->action('ClientesController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
     /**
@@ -53,9 +55,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_usuario)
+    public function show($id_cliente)
     {
-        return view('usuario.edit');
+        return view('cliente.edit');
     }
 
     /**
@@ -64,10 +66,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_usuario)
+    public function edit($id_cliente)
     {
-        $dados = User::find($id_usuario);
-        return view("usuario.edit",compact('dados'));
+        $dados = Cliente::find($id_cliente);
+        return view("cliente.edit",compact('dados'));
     }
 
     /**
@@ -77,14 +79,17 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_usuario)
+    public function update(Request $request, $id_cliente)
     {
-        $dados = User::find($id_usuario);
+        $dados = Cliente::find($id_cliente);
         $dados->nome = $request->nome;
+        $dados->sobrenome = $request->sobrenome;
+        $dados->cpf = $request->cpf;
+        $dados->cnh = $request->cnh;
         $dados->email = $request->email;
         $dados->password = $request->password;
         $dados->update();
-        return redirect()->action('UsersController@index')->with('success', 'Alterado com Sucesso!');     
+        return redirect()->action('ClientesController@index')->with('success', 'Alterado com Sucesso!');     
     }
 
     /**
@@ -93,10 +98,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_usuario)
+    public function destroy($id_cliente)
     {
-        $dados = User::find($id_usuario);
+        $dados = Cliente::find($id_cliente);
         $dados->delete();
-        return redirect()->action('UsersController@index')->with('success', 'Excluído com Sucesso!');
+        return redirect()->action('ClientesController@index')->with('success', 'Excluído com Sucesso!');
     }
 }

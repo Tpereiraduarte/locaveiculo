@@ -21,12 +21,12 @@
           @csrf
         <div class="box-body">
           <div class="form-group">
-                  <label for="usuario">Usuário:</label>
-                  <select class="form-control" id="usuario_id" name="usuario_id" aria-required="true">
-                      <option value="{{$dados->usuario_id}}" selected>{{$dados->usuario->nome}}</option>
-                      @foreach($usuario as $value)
-                          @if($dados->usuario_id != $value->id_usuario)
-                              <option value="{{$value->id_usuario}}">{{$value->nome}}</option>
+                  <label for="categoria">Usuário:</label>
+                  <select class="form-control" id="categoria_id" name="categoria_id" aria-required="true">
+                      <option value="{{$dados->categoria_id}}" selected>{{$dados->categoria->nome}}</option>
+                      @foreach($categoria as $value)
+                          @if($dados->categoria_id != $value->id_categoria)
+                              <option value="{{$value->id_categoria}}">{{$value->nome}}</option>
                           @endif
                       @endforeach 
                   </select>                        
@@ -34,10 +34,10 @@
           <div class="form-group">
               <label for="carro">Carro:</label>
               <select class="form-control" id="carro_id" name="carro_id" aria-required="true">
-                  <option value="{{$dados->carro_id}}" selected>{{$dados->carros->nome}}</option>
+                  <option value="{{$dados->carro_id}}" selected>{{$dados->carro->modelo}}</option>
                   @foreach($carro as $value)
                       @if($dados->carro_id != $value->id_carro)
-                          <option value="{{$value->id_carro}}">{{$value->nome}}</option>
+                          <option value="{{$value->id_carro}}">{{$value->modelo}}</option>
                       @endif
                   @endforeach 
               </select>                        

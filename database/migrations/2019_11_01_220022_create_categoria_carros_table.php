@@ -20,18 +20,16 @@ class CreateCategoriaCarrosTable extends Migration
             $table->uuid('carro_id');
             $table->timestamps();
         });
-
+          Schema::table('categoria_carros', function (Blueprint $table) {
+            $table->foreign('categoria_id')
+            ->references('id_categoria')
+            ->on('categorias')
+            ->onDelete('cascade');
+        });
         Schema::table('categoria_carros', function (Blueprint $table) {
             $table->foreign('carro_id')
             ->references('id_carro')
             ->on('carros')
-            ->onDelete('cascade');
-        });
-
-        Schema::table('categoria_carros', function (Blueprint $table) {
-            $table->foreign('categoria_id')
-            ->references('id_categoria')
-            ->on('categorias')
             ->onDelete('cascade');
         });
     }

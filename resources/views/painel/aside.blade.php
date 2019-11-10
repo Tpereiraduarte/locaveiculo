@@ -17,24 +17,17 @@
             Cadastros
         </div>
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url('/carro/')}}">
-            <i class="fas fa-fw fa-table"></i>
-                <span>Carros</span></a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url('/usuario/')}}">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Usuarios</span></a>
-        </li>
-
-        <li class="nav-item">
+         <li class="nav-item">
             <a class="nav-link" href="{{ url('/aluguel/')}}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Aluguéis</span></a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('/carro/')}}">
+            <i class="fas fa-fw fa-table"></i>
+                <span>Carros</span></a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ url('/categoria/')}}">
                 <i class="fas fa-fw fa-table"></i>
@@ -45,6 +38,18 @@
             <a class="nav-link" href="{{ url('/categoriacarro/')}}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Categoria do Carro</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('/usuario/')}}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Usuarios</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('/cliente/')}}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Clientes</span></a>
         </li>
     </ul>
     <div id="content-wrapper" class="d-flex flex-column">

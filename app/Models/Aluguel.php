@@ -11,11 +11,20 @@ class Aluguel extends Model
     public $incrementing = false;
 
     protected $primaryKey = 'id_aluguel';
-    protected $fillable = ['data_inicial','data_final','valor','usuario_id','carro_id'];
+    protected $fillable = ['data_inicial','data_final','cliente_id','categoria_carro_id','carro_id','valor',];
     protected $table = 'aluguels';
+    protected $with = ['cliente','categoriacarro','carro'];
     
-    public function paragrafos()
-    {
-        return $this->hasMany(Paragrafo::class,'id_norma','norma_id');
+    public function cliente(){
+    	return $this->belongsTo(Cliente::class,'cliente_id','id_cliente');
     }
+
+    public function categoriacarro(){
+        return $this->belongsTo(Categoria::class,'categoria_carro_id','id_categoria_carro');
+    }
+
+ 	public function carro(){
+    	return $this->belongsTo(Carro::class,'carro_id','id_carro');
+    }
+
 }

@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aluguel;
+use App\Models\Carro;
+use App\Models\Cliente;
+use App\Models\Categoria;
+use App\Models\CategoriaCarro;
 use Illuminate\Http\Request;
 
 class InicioController extends Controller
@@ -13,7 +18,8 @@ class InicioController extends Controller
      */
     public function index()
     {
-        return view('inicio');
+        $dados = Carro::all();
+        return view('inicio',compact('dados'));
     }
 
     /**

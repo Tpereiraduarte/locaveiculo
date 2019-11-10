@@ -13,4 +13,11 @@ class Carro extends Model
     protected $primaryKey = 'id_carro';
     protected $fillable = ['modelo','ano','fabricante','placa','imagem'];
     protected $table = 'carros';
+
+     public function categoriacarro(){
+    	return $this->belongsTo(CategoriaCarro::class,'id_carro','carro_id');
+    }
+    public function aluguel(){
+    	return $this->belongsTo(Aluguel::class,'id_carro','carro_id');
+    }
 }

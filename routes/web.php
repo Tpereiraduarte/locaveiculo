@@ -21,7 +21,8 @@ Route::group(['middleware'=>['auth']],function(){
     });
    
 });
-Route::resource('usuario', 'UsersController');    
+Route::resource('usuario', 'UsersController'); 
+Route::resource('cliente', 'ClientesController');   
 Route::resource('categoria', 'CategoriasController');
 Route::resource('carro', 'CarrosController');
 Route::resource('aluguel', 'AluguelsController');

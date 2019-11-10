@@ -28,11 +28,21 @@
             <input type="date" class="form-control" id="dataFinal" placeholder="Digite o Data Final do aluguel" name="datafinal" required>
           </div>
           <div class="form-group">
-              <label for="usuario">Usuário:</label>
-              <select class="form-control" id="usuario_id" name="usuario_id" aria-required="true">
-                  <option selected disabled value="">Escolha um usuário</option>
-                  @foreach($usuario as $value)
-                  <option value="{{$value->id_usuario}}">{{$value->nome}}                                
+              <label for="cliente">Cliente:</label>
+              <select class="form-control" id="cliente_id" name="cliente_id" aria-required="true">
+                  <option selected disabled value="">Escolha o cliente</option>
+                  @foreach($cliente as $value)
+                  <option value="{{$value->id_cliente}}">{{$value->nome}}                                
+                  </option>
+                  @endforeach
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="carro">Categoria:</label>
+              <select class="form-control" id="categoria_id" name="categoria_id" aria-required="true">
+                  <option selected disabled value="">Escolha uma categoria</option>
+                  @foreach($categoria as $value)
+                  <option value="{{$value->id_categoria}}">{{$value->nome}}                                
                   </option>
                   @endforeach
               </select>
@@ -42,7 +52,7 @@
               <select class="form-control" id="carro_id" name="carro_id" aria-required="true">
                   <option selected disabled value="">Escolha um carro</option>
                   @foreach($carro as $value)
-                  <option value="{{$value->id_carro}}">{{$value->nome}}                                
+                  <option value="{{$value->id_carro}}">{{$value->modelo}}                                
                   </option>
                   @endforeach
               </select>

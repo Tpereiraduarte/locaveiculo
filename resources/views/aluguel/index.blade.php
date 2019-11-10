@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6">
-            <a id="list" href="{{URL::route('aluguel.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-file-text-o"></i> CadastrarAluguel</a>
+            <a id="list" href="{{URL::route('aluguel.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-file-text"></i> CadastrarAluguel</a>
         </div> 
     </div>
 </div>
@@ -26,15 +26,6 @@
                         <th>Valor</th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th>Usuário</th>
-                        <th>Carro</th>
-                        <th>Data Inicial</th>
-                        <th>Data Final</th>
-                        <th>Valor</th>
-                    </tr>
-                    </tfoot>
                     <tbody>
                         @foreach($dados as $value)
                     <tr>

@@ -26,6 +26,7 @@
 
             <!-- vehicle-slider -->
             <div class="vehicle-slider slider-style-two owl-carousel" data-item="[4,2,1,1]">
+                 @foreach($dados as $value)
                 <div class="item">
                     <div class="vehicle-content theme-yellow">
                         <div class="vehicle-thumbnail">
@@ -34,7 +35,7 @@
                             </a>
                         </div><!-- /.vehicle-thumbnail -->
                         <div class="vehicle-bottom-content">
-                            <h2 class="vehicle-title"><a href="#">Toyota Aygo</a></h2>
+                            <h2 class="vehicle-title"><a href="#">{{$value->modelo}}</a></h2>
                             <div class="vehicle-meta">
                                 <div class="meta-item">
                                     <span>Rent:  $200 / </span> Day. -  $12 / Km.
@@ -43,59 +44,8 @@
                         </div><!-- /.vehicle-bottom-content -->
                     </div><!-- /.car-content -->
                 </div><!-- /.item -->
+                @endforeach
 
-                <div class="item">
-                    <div class="vehicle-content theme-yellow">
-                        <div class="vehicle-thumbnail">
-                            <a href="#">
-                                <img src="{{asset("site/assets/images/popular/popular-02.png")}}" alt="car-item" />
-                            </a>
-                        </div><!-- /.vehicle-thumbnail -->
-                            <div class="vehicle-bottom-content">
-                               <h2 class="vehicle-title"><a href="#">Toyota Aygo</a></h2>
-                                <div class="vehicle-meta">
-                                    <div class="meta-item">
-                                        <span>Rent:  $200 /</span> Day.  -  $12 / Km.
-                                    </div>
-                                </div><!-- /.meta-left -->
-                            </div><!-- /.vehicle-bottom-content -->
-                    </div><!-- /.car-content -->
-                </div><!-- /.item -->
-
-                <div class="item">
-                    <div class="vehicle-content theme-yellow">
-                        <div class="vehicle-thumbnail">
-                            <a href="#">
-                                <img src="{{asset("site/assets/images/popular/popular-03.png")}}" alt="car-item" />
-                            </a>
-                        </div><!-- /.vehicle-thumbnail -->
-                            <div class="vehicle-bottom-content">
-                               <h2 class="vehicle-title"><a href="#">Toyota Aygo</a></h2>
-                                <div class="vehicle-meta">
-                                    <div class="meta-item">
-                                        <span>Rent:  $200 /</span> Day.  -  $12 / Km.
-                                    </div>
-                                </div><!-- /.meta-left -->
-                            </div><!-- /.vehicle-bottom-content -->
-                    </div><!-- /.car-content -->
-                </div><!-- /.item -->
-
-                <div class="item">
-                    <div class="vehicle-content theme-yellow">
-                        <div class="vehicle-thumbnail">
-                            <a href="#">
-                                <img src="{{asset("site/assets/images/popular/popular-04.png")}}" alt="car-item" />
-                            </a>
-                        </div><!-- /.vehicle-thumbnail -->
-                            <div class="vehicle-bottom-content">
-                               <h2 class="vehicle-title"><a href="#">Toyota Aygo</a></h2>
-                                <div class="vehicle-meta">
-                                    <div class="meta-item">
-                                        <span>Rent:  $200 /</span> Day.  -  $12 / Km.
-                                    </div>
-                                </div><!-- /.meta-left -->
-                            </div><!-- /.vehicle-bottom-content -->
-                    </div><!-- /.car-content -->
-                </div><!-- /.item -->
+               
             </div><!-- /.vehicle-slider -->
 @endsection
