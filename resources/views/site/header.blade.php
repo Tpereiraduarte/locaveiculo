@@ -25,8 +25,12 @@
                 <div class="header-content-right">
                     <ul class="header-top-menu">
                         <li>
-                            <button type="button" class="btn btn-warning" style="margin-top: 10px" data-toggle="modal" data-target="#modalExemplo">
+                            <button type="button" class="btn btn-warning" style="margin-top: 10px" data-toggle="modal" data-target="#modal-login">
                                 <i class="fa fa-user"></i> Login</button>
+                            </li>
+                            <li>
+                            <button type="button" class="btn btn-warning" style="margin-top: 10px" data-toggle="modal" data-target="#modalcadastro">
+                                <i class="fa fa-user"></i>  Cadastre Agora</button>
                             </li>
                         </ul>
                     </div><!-- /.left-content -->
@@ -37,47 +41,84 @@
 
  
 <!-- MODAL -->
-
-<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div id="login-overlay" class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-              <h4 class="modal-title" id="myModalLabel">Login da LocaVeiculo</h4>
-          </div>
-          <div class="modal-body">
-              <div class="row">
-                  <div class="col-xs-6">
-                      <div class="well">
-                          <form id="loginForm" method="POST" action="/login/" novalidate="novalidate">
-                              <div class="form-group">
-                                  <label for="email" class="control-label">E-mail</label>
-                                  <input type="text" class="form-control" id="email" name="email" value="" required=""  placeholder="exemplo@gmail.com">
-                                  <span class="help-block"></span>
-                              </div>
-                              <div class="form-group">
-                                  <label for="senha" class="control-label">Senha</label>
-                                  <input type="password" class="form-control" id="senha" name="password" value="" required="">
-                              </div>
-                              <button type="submit" class="btn btn-success btn-block">Login</button>
-                          </form>
-                      </div>
-                  </div>
-                  <div class="col-xs-6">
-                      <p class="lead">Ainda não é cadastrado na <span class="text-success">LocaVeículo</span></p>
-                      <ul class="list-unstyled" style="line-height: 2">
-                          <li><span class="fa fa-check text-success"></span>Vários tipo de carro.</li>
-                          <li><span class="fa fa-check text-success"></span>Ótimo atendimento</li>
-                          <li><span class="fa fa-check text-success"></span>Preços Acessíveis</li>
-                      </ul>
-                      <p><a href="/new-customer/" class="btn btn-info btn-block">Cadastre Agora</a></p>
-                  </div>
-              </div>
-          </div>
+<div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login da LocaVeiculo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Email:</label>
+            <input type="email" name="email" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Senha:</label>
+            <input type="password" name="password" class="form-control" id="recipient-name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success btn-block">Login</button>
+      </div>
+    </div>
   </div>
 </div>
+
+
+<!--Modal cadastro-->
+
+<div class="modal fade" id="modalcadastro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cadastre-se na LocaVeiculo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form role="form" action="{{ action('InicioController@store') }}" method="POST">
+            @csrf
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Nome:</label>
+            <input type="text" name="nome" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Sobrenome:</label>
+            <input type="text" name="sobrenome" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">CPF:</label>
+            <input type="text" name="cpf" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">CNH:</label>
+            <input type="text" name="cnh" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Email:</label>
+            <input type="email" name="email" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Senha:</label>
+            <input type="password" name="password" class="form-control" id="recipient-name">
+          </div>
+            <div class="modal-footer">
+         <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+      </div>
+        </form>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+
 
 
 

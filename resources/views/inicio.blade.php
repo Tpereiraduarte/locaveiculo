@@ -30,7 +30,7 @@
                 <div class="item">
                     <div class="vehicle-content theme-yellow">
                         <div class="vehicle-thumbnail">
-                            <a href="#">
+                            <a href="{{ url('reserva',$value->id_carro)}}">
                                 <img src="{{asset("site/assets/images/popular/popular-01.png")}}" alt="car-item" />
                             </a>
                         </div><!-- /.vehicle-thumbnail -->
