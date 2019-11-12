@@ -16,23 +16,20 @@
                     <div class="vehicle-single-content">
                         <div class="tb mb-block">
                             <div class="tb-cell mb-block">
-                               <h2 class="vehicle-single-title">Maruti 2008 Model</h2>
+                               <h2 class="vehicle-single-title">{{$dados->modelo}}</h2>
                             </div><!-- /.tb-cell -->
                             <div class="tb-cell mb-block">
-                               <h2 class="pull-right rent-price">Rent/Day: $350</h2>
+                               <h2 class="pull-right rent-price">Valor da diária: {{$preco[0]->valor_diaria}}</h2>
                             </div><!-- /.tb-cell -->
                         </div><!-- /.tb -->
                         <div class="clearfix"></div><!-- /.clearfix -->
                         
                         <div class="price-details">
-                            <h3 class="details-title">Price Details-</h3>
+                            <h3 class="details-title">Dados do Carro:</h3>
                             <ul>
-                                <li>Rent/Day: $150 (negotiable)</li>
-                                <li>Rent/Week: $900 (negotiable)</li>
-                                <li>Rent/Month: $3000 (negotiable)</li>
-                                <li>Service Charge : 150 USD per month, subject to change</li>
-                                <li>Security Deposit : All Security's Company</li>
-                                <li>Servicing : Servicing free</li>
+                        <li>Ano: {{$dados->ano}}</li>
+                        <li>Fabricante: {{$dados->fabricante}}</li>
+                        <li>Pacla: {{$dados->placa}}</li>
                             </ul>
                         </div><!-- /.price -->
 

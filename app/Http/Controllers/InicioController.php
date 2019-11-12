@@ -8,6 +8,7 @@ use App\Models\Cliente;
 use App\Models\Categoria;
 use App\Models\CategoriaCarro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InicioController extends Controller
 {
@@ -22,6 +23,16 @@ class InicioController extends Controller
         return view('inicio',compact('dados'));
     }
 
+    public function reserva($id_carro)
+    {
+        $dados = Carro::find($id_carro);
+        $preco = DB::table('categoria_carros')->where('carro_id','=',$id_carro)
+            ->join('categorias','categorias.id_categoria', '=','categoria_carros.categoria_id')
+            ->select('categorias.valor_diaria')
+            ->get();
+        return view('reserva',compact('dados','preco'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +40,7 @@ class InicioController extends Controller
      */
     public function create()
     {
-        //
+        return view('inicio');
     }
 
     /**
@@ -40,7 +51,15 @@ class InicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $clientes = new Cliente;
+        $clientes->nome             = $request->nome;
+        $clientes->sobrenome        = $request->sobrenome;
+        $clientes->cpf              = $request->cpf;
+        $clientes->cnh              = $request->cnh;
+        $clientes->email            = $request->email;  
+        $clientes->password         = bcrypt($request['password']);                 
+        $clientes->save();
+        return redirect()->action('InicioController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
     /**
