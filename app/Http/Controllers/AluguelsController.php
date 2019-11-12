@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Aluguel;
 use App\Models\Carro;
 use App\Models\Cliente;
@@ -47,16 +48,30 @@ class AluguelsController extends Controller
     public function store(Request $request)
     {
         $dados = new Aluguel();
-        $dados->data_inicial = $request->data_inicial;
-        $dados->data_final = $request->data_final;
+        $dados->data_inicial = $request->datainicial;
+        $dados->data_final = $request->datafinal;
         $dados->cliente_id = $request->cliente_id;
-        $dados->categoria_id = $request->categoria_id;
         $dados->carro_id = $request->carro_id;
-        $dados->valor = $request->valor;
+        $dados->valor = $this->calculaValorAluguel($dados->data_inicial,$dados->data_final,$request->categoria_id);
         $dados->save();
         return redirect()->action('AluguelsController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
+    public function dinamico(Request $request)
+    {
+        $value = $request->get('value');
+        $data = DB::table('categoria_carros')
+        ->join('carros','categoria_carros.carro_id','=','carros.id_carro')
+        ->select('carros.id_carro','carros.modelo','carros.ano','categoria_carros.carro_id')
+        ->where('categoria_id',$value)
+        ->get();
+        $resultado ='<option value="">Escolha o carro desejado</option>';
+        foreach($data as $key => $row){
+            $resultado .='<option value="'.$row->carro_id.'">'.$row->modelo.' - '.$row->ano.'</option>';
+        }
+        echo $resultado;
+    }
+    
     /**
      * Display the specified resource.
      *
@@ -90,14 +105,22 @@ class AluguelsController extends Controller
     public function update(Request $request, $id_aluguel)
     {
         $dados = Aluguel::find($id_aluguel);
-        $dados->data_inicial = $request->data_inicial;
-        $dados->data_final = $request->data_final;
+        $dados->data_inicial = $request->datainicial;
+        $dados->data_final = $request->datafinal;
         $dados->cliente_id = $request->cliente_id;
-        $dados->categoria_id = $request->categoria_id;
         $dados->carro_id = $request->carro_id;
-        $dados->valor = $request->valor;
+        $dados->valor = $this->calculaValorAluguel($dados->data_inicial,$dados->data_final,$request->categoria_id);
         $dados->update();
-        return redirect()->action('AluguelsController@index')->with('success', 'Alterado com Sucesso!');    }
+        return redirect()->action('AluguelsController@index')->with('success', 'Alterado com Sucesso!');    
+    }
+
+    public function calculaValorAluguel($data_inicial , $data_final, $categoria_id)
+    {
+        $valor_diaria = Categoria::find($categoria_id);
+        $data_ini = Carbon::createFromFormat('Y-m-d', $data_inicial);
+        $data_fin = Carbon::createFromFormat('Y-m-d', $data_final);
+        return $resultado = ($data_fin->diffInDays($data_ini)) * (float)$valor_diaria->valor_diaria;
+    }
 
     /**
      * Remove the specified resource from storage.

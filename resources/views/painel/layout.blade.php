@@ -18,8 +18,8 @@
         </section>
     </div>
         @include('painel/footer')
-        @stack('scripts')
         <script src="{{asset('assets/jquery/jquery.min.js')}}"></script>
+        @stack('scripts')
         <script src="{{asset('assets/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('assets/jquery-easing/jquery.easing.min.js')}}"></script>
         <script src="{{asset('assets/js/sb-admin-2.min.js')}}"></script>

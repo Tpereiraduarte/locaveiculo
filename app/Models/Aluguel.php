@@ -11,7 +11,7 @@ class Aluguel extends Model
     public $incrementing = false;
 
     protected $primaryKey = 'id_aluguel';
-    protected $fillable = ['data_inicial','data_final','cliente_id','categoria_carro_id','carro_id','valor',];
+    protected $fillable = ['data_inicial','data_final','cliente_id','categoria_carro_id','carro_id','valor'];
     protected $table = 'aluguels';
     protected $with = ['cliente','categoriacarro','carro'];
     

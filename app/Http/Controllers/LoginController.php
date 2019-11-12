@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -21,15 +21,15 @@ class LoginController extends Controller
     }
 
       public function login(Request $request){
-
         $request->validate([
             'email' => 'required',
             'password' => 'required'
         ]);
         $credentials = ['email'=>$request->email,'password'=>$request->password];
+
         if(Auth::attempt($credentials)){
             $user = DB::table('users')->where('email', $request->email)->first();
-            return redirect()->intended('inicio');
+            return redirect()->intended('/aluguel');
         }else{
             return redirect()->back()->with('msg',"Acesso negado com estas credenciais");
         }

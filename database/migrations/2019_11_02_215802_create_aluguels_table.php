@@ -20,7 +20,6 @@ class CreateAluguelsTable extends Migration
             $table->date('data_inicial');
             $table->date('data_final');
             $table->uuid('cliente_id');
-            $table->uuid('categoria_carro_id');
             $table->uuid('carro_id');
             $table->string('valor');
             $table->timestamps();
@@ -30,13 +29,6 @@ class CreateAluguelsTable extends Migration
             $table->foreign('cliente_id')
             ->references('id_cliente')
             ->on('clientes')
-            ->onDelete('cascade');
-        });
-
-        Schema::table('aluguels', function (Blueprint $table) {
-            $table->foreign('categoria_carro_id')
-            ->references('id_categoria_carro')
-            ->on('categoria_carros')
             ->onDelete('cascade');
         });
 

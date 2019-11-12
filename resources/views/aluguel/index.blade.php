@@ -24,15 +24,17 @@
                         <th>Data Inicial</th>
                         <th>Data Final</th>
                         <th>Valor</th>
+                        <th>Ações</th>
                     </tr>
                     </thead>
                     <tbody>
                         @foreach($dados as $value)
                     <tr>
-                        <td>{{$value->usuarios->nome}}</td>
-                        <td>{{$value->carros->nome}}</td>
+                        <td>{{$value->cliente->nome}}</td>
+                        <td>{{$value->carro->modelo}}</td>
                         <td>{{$value->data_inicial}}</td>
                         <td>{{$value->data_final}}</td>
+                        <td>{{number_format($value->valor, 2, ',', '.')}}</td>
                         <td class="acoes-lista">
                             <a id="edit" href="{{URL::route('aluguel.edit',$value->id_aluguel)}}" title="Editar" class="fa fa-edit"></a>
                             <form action="{{ action('AluguelsController@destroy', $value->id_aluguel) }}" method="POST">

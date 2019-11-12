@@ -25,5 +25,7 @@ Route::resource('usuario', 'UsersController');
 Route::resource('cliente', 'ClientesController');   
 Route::resource('categoria', 'CategoriasController');
 Route::resource('carro', 'CarrosController');
+Route::post('aluguel/calculo', 'AluguelsController@calculaValorAluguel')->name('calculo');
+Route::post('aluguel/dinamico', 'AluguelsController@dinamico')->name('dinamico');
 Route::resource('aluguel', 'AluguelsController');
 Route::resource('categoriacarro', 'CategoriaCarrosController');

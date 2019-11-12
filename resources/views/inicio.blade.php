@@ -38,7 +38,7 @@
                             <h2 class="vehicle-title"><a href="#">{{$value->modelo}}</a></h2>
                             <div class="vehicle-meta">
                                 <div class="meta-item">
-                                    <span>Rent:  $200 / </span> Day. -  $12 / Km.
+                                    <span>{{$value->fabricante}} / </span>{{$value->ano}}
                                 </div>
                             </div><!-- /.meta-left -->
                         </div><!-- /.vehicle-bottom-content -->
