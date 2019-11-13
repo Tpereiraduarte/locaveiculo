@@ -41,7 +41,8 @@ class UsersController extends Controller
         $usuarios = new User;
         $usuarios->nome             = $request->nome;
         $usuarios->email            = $request->email;  
-        $usuarios->password         = bcrypt($request['password']);                 
+        $usuarios->password         = bcrypt($request['password']);
+        $usuarios->tipo_usuario     = $request->tipo_usuario;                  
         $usuarios->remember_token   = bcrypt($request['password']);
         $usuarios->save();
         return redirect()->action('UsersController@index')->with('success', 'Cadastrado com Sucesso!');

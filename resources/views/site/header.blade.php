@@ -28,10 +28,6 @@
                             <button type="button" class="btn btn-warning" style="margin-top: 10px" data-toggle="modal" data-target="#modal-login">
                                 <i class="fa fa-user"></i> Login</button>
                             </li>
-                            <li>
-                            <button type="button" class="btn btn-warning" style="margin-top: 10px" data-toggle="modal" data-target="#modalcadastro">
-                                <i class="fa fa-user"></i>  Cadastre Agora</button>
-                            </li>
                         </ul>
                     </div><!-- /.left-content -->
                 </div><!-- /.col-md-3 -->
@@ -39,35 +35,54 @@
         </div><!-- /.container -->
     </header><!-- /.head-area -->
 
- 
-<!-- MODAL -->
+
+<!--Modal -->
+
+
 <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Login da LocaVeiculo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Email:</label>
-            <input type="email" name="email" class="form-control" id="recipient-name">
+    <div id="login-overlay" class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Login da locaveiculo</h4>
           </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Senha:</label>
-            <input type="password" name="password" class="form-control" id="recipient-name">
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-xs-6">
+                      <div class="well">
+                          <form id="loginForm" method="POST" action="/login/" novalidate="novalidate">
+                              <div class="form-group">
+                                  <label for="email" class="control-label">E-mail</label>
+                                  <input type="email" class="form-control" id="email" name="email" value="" required="" title="E-mail" placeholder="example@gmail.com">
+                                  <span class="help-block"></span>
+                              </div>
+                              <div class="form-group">
+                                  <label for="password" class="control-label">Senha</label>
+                                  <input type="password" class="form-control" id="password" name="password" value="" required="" title="Senha">
+                                  <span class="help-block"></span>
+                              </div>
+                              <button type="submit" class="btn btn-success btn-block">Login</button>
+                          </form>
+                      </div>
+                  </div>
+                  <div class="col-xs-6">
+                      <p class="lead">Ainda não é cadastrado na <span class="text-success">LocaVeiculo</span></p>
+                      <ul class="list-unstyled" style="line-height: 2">
+                          <li><span class="fa fa-check text-success"></span> Preços Acessíveis</li>
+                          <li><span class="fa fa-check text-success"></span> Carros de Qualidade</li>
+                          <li><span class="fa fa-check text-success"></span> Atendimento Personalizado</li>
+                      </ul>
+                      <p><button type="button" class="btn btn-warning" style="margin-top: 10px" data-toggle="modal" data-target="#modalcadastro">
+                                <i class="fa fa-user"></i>  Cadastre Agora</button></p>          
+                  </div>
+              </div>
           </div>
-        </form>
       </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-success btn-block">Login</button>
-      </div>
-    </div>
   </div>
 </div>
+
+ 
+
 
 
 <!--Modal cadastro-->
@@ -108,6 +123,7 @@
             <label for="recipient-name" class="col-form-label">Senha:</label>
             <input type="password" name="password" class="form-control" id="recipient-name">
           </div>
+           <input type="hidden" id="tipo_usuario" name="tipo_usuario" value="cliente">
             <div class="modal-footer">
          <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
       </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluguel;
+use App\Models\User;
 use App\Models\Carro;
 use App\Models\Cliente;
 use App\Models\Categoria;
@@ -26,11 +27,13 @@ class InicioController extends Controller
     public function reserva($id_carro)
     {
         $dados = Carro::find($id_carro);
-        $preco = DB::table('categoria_carros')->where('carro_id','=',$id_carro)
+        $carro = Categoria::find($id_carro);
+        $categoria = DB::table('categoria_carros')->where('carro_id','=',$id_carro)
             ->join('categorias','categorias.id_categoria', '=','categoria_carros.categoria_id')
-            ->select('categorias.valor_diaria')
+            ->select('categorias.nome','categorias.valor_diaria')
             ->get();
-        return view('reserva',compact('dados','preco'));
+        
+        return view('reserva',compact('dados','categoria'));
     }
 
     /**
@@ -57,8 +60,16 @@ class InicioController extends Controller
         $clientes->cpf              = $request->cpf;
         $clientes->cnh              = $request->cnh;
         $clientes->email            = $request->email;  
-        $clientes->password         = bcrypt($request['password']);                 
+        $clientes->password         = bcrypt($request['password']);
         $clientes->save();
+
+        $usuarios = new User;
+        $usuarios->nome             = $request->nome;
+        $usuarios->email            = $request->email;  
+        $usuarios->password         = bcrypt($request['password']);
+        $usuarios->tipo_usuario     = $request->tipo_usuario;
+        $usuarios->save();                    
+        
         return redirect()->action('InicioController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
