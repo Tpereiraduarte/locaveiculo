@@ -31,6 +31,7 @@
                   <label for="password">Senha</label>
                   <input type="password" class="form-control" id="password" placeholder="Digite a senha" name="password" maxlength="150" size="50" required>
                 </div>
+                <input type="hidden" id="tipo_usuario" name="tipo_usuario" value="usuario">
               </div>
               <div class="box-footer">
                 <a href="{{URL::route('usuario.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>

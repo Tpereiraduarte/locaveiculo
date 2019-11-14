@@ -15,14 +15,15 @@ Route::post('admin/login','LoginController@login');
 Route::get('admin/','LoginController@index')->name('login');
 
 Route::group(['middleware'=>['auth']],function(){
-    Route::get('/logout',function(){
-        Auth::logout();
-        return redirect()->action('LoginController@index');            
-    });
-   
+	Route::get('/logout',function(){
+		Auth::logout();
+		return redirect()->action('LoginController@index');            
+	});
+	
 });
 Route::get('reserva/{id_carro}', 'InicioController@reserva');
 Route::resource('inicio', 'InicioController');
+
 Route::resource('usuario', 'UsersController'); 
 Route::resource('cliente', 'ClientesController');   
 Route::resource('categoria', 'CategoriasController');
