@@ -20,14 +20,6 @@
       @csrf
         <div class="box-body">
           <div class="form-group">
-            <label for="Data Inicial">Data Inicial</label>
-            <input type="date" class="form-control data-inicial" data-dependent="data-inicial" id="dataInicial" placeholder="Digite o Data Inicial do aluguel" name="datainicial" required>
-          </div>
-          <div class="form-group">
-            <label for="Data Inicial">Data Final</label>
-            <input type="date" class="form-control data-final" id="dataFinal" placeholder="Digite o Data Final do aluguel" name="datafinal" required>
-          </div>
-          <div class="form-group">
               <label for="cliente">Cliente:</label>
               <select class="form-control" id="cliente_id" name="cliente_id" aria-required="true">
                   <option selected disabled value="">Escolha o cliente</option>
@@ -39,7 +31,7 @@
           </div>
           <div class="form-group">
               <label for="carro">Categoria:</label>
-              <select class="form-control dinamic" data-dependent="categoria" id="categoria_id" name="categoria_id" aria-required="true">
+              <select class="form-control dinamic aluguel" data-dependent="categoria" id="categoria_id" name="categoria_id" aria-required="true">
                   <option selected disabled value="">Escolha uma categoria</option>
                   @foreach($categoria as $value)
                   <option value="{{$value->id_categoria}}">{{$value->nome}}                                
@@ -52,6 +44,14 @@
               <select class="form-control" data-dependent="carro" id="carro" name="carro_id" aria-required="true">
                   <option selected disabled value="">Escolha um carro</option>
               </select>
+          </div>
+          <div class="form-group">
+            <label for="Data Inicial">Data Inicial</label>
+            <input type="date" class="form-control aluguel" data-dependent="data-inicial" id="dataInicial" placeholder="Digite o Data Inicial do aluguel" name="datainicial" required>
+          </div>
+          <div class="form-group">
+            <label for="Data Inicial">Data Final</label>
+            <input type="date" class="form-control aluguel" id="dataFinal" placeholder="Digite o Data Final do aluguel" name="datafinal" required>
           </div>
           <div class="form-group">
               <label for="carro" id="preco">Preço:</label>
@@ -90,13 +90,14 @@
             }
         });
 
-        $('.data-final').change(function() {
-            if ($(this).val() != '') {
-              debugger
-                var datafinal = $(this).val();
+        $('.aluguel').change(function() {
+                var categoria = $('#categoria_id').children("option:selected").val();
                 var datainicial = $('input[name="datainicial"]').val();
+                var datafinal = $('input[name="datafinal"]').val();
+                debugger
+            if(categoria){
+              if (datafinal != '' && datainicial) {
                 var _token = $('input[name="_token"]').val();
-                var categoria = $('input[name="categoria"]').val();
                 $.ajax({
                     url: "{{URL::route('calculo')}}",
                     method: "POST",
@@ -107,12 +108,12 @@
                       categoria: categoria
                     },
                     success: function(result) {
-                        $('#' + dependent).html(result);
-                        $('#carro').empty();
-                        $('#carro').append(result);
+                        $('#preco').empty();
+                        $('#preco').append('Preço: R$'+result);
                     }
                 });
             }
+          }
         });
     });
 </script>

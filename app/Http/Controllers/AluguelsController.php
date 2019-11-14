@@ -122,6 +122,16 @@ class AluguelsController extends Controller
         return $resultado = ($data_fin->diffInDays($data_ini)) * (float)$valor_diaria->valor_diaria;
     }
 
+    public function calculoValorAluguelDinamico(Request $request)
+    {
+        $data_inicial = $request->get('datainicial');
+        $data_final = $request->get('datafinal'); 
+        $categoria_id = $request->get('categoria');
+        $valor_diaria = Categoria::find($categoria_id);
+        $data_ini = Carbon::createFromFormat('Y-m-d', $data_inicial);
+        $data_fin = Carbon::createFromFormat('Y-m-d', $data_final);
+        return $resultado = ($data_fin->diffInDays($data_ini)) * (float)$valor_diaria->valor_diaria;
+    }
     /**
      * Remove the specified resource from storage.
      *
