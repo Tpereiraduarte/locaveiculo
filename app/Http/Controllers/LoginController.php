@@ -29,7 +29,12 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials)){
             $user = DB::table('users')->where('email', $request->email)->first();
+            $usuario = DB::table('users')->where('tipo_usuario', 'usuario')->first();
+            if ($usuario =='usuario'){
             return redirect()->intended('/aluguel');
+            }else{
+            return redirect()->intended('/inicio');  
+            }
         }else{
             return redirect()->back()->with('msg',"Acesso negado com estas credenciais");
         }

@@ -50,7 +50,8 @@
               <div class="row">
                   <div class="col-xs-6">
                       <div class="well">
-                          <form id="loginForm" method="POST" action="/login/" novalidate="novalidate">
+                          <form id="loginForm" method="POST" action="{{ action('LoginController@login') }}" novalidate="novalidate">
+                            {{ csrf_field() }}
                               <div class="form-group">
                                   <label for="email" class="control-label">E-mail</label>
                                   <input type="email" class="form-control" id="email" name="email" value="" required="" title="E-mail" placeholder="example@gmail.com">
