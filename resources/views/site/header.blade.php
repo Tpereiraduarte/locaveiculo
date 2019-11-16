@@ -35,7 +35,6 @@
         </div><!-- /.container -->
     </header><!-- /.head-area -->
 
-
 <!--Modal -->
 
 

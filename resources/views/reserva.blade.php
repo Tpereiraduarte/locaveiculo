@@ -19,7 +19,7 @@
                                <h2 class="vehicle-single-title">{{$dados->modelo}}</h2>
                             </div><!-- /.tb-cell -->
                             <div class="tb-cell mb-block">
-                               <h2 class="pull-right rent-price">Valor da diária: {{$categoria[0]->valor_diaria}}</h2>
+                               <h2 class="pull-right rent-price">Valor da diária: R$ {{number_format($categoria[0]->valor_diaria, 2, ',', '.')}}</h2>
                             </div><!-- /.tb-cell -->
                         </div><!-- /.tb -->
                         <div class="clearfix"></div><!-- /.clearfix -->
@@ -44,7 +44,9 @@
 
                 <div class="col-md-4">
                     <div class="vehicle-sidebar pd-zero">                    
-                        <form action="#" method="get" class="advance-search-query search-query-two">
+                        <form role="form" action="{{ action('InicioController@reservastore') }}" method="POST"> 
+                        @csrf
+                            <input type="hidden" name="usuario_nome" value="{{Auth::user()->nome}}">
                             <h2 class="form-title">Fazer a Reserva</h2>
                             <div class="form-content available-filter">
                                 <div class="regular-search">
@@ -52,33 +54,40 @@
 
                                     <label>Data Inicial:</label>
                                     <div class="input">
-                                        <i class="fa fa-calendar"></i>
-                                        <input type="text" name="datainicial" class="date-start date-selector form-controller" placeholder="Data Inicial">
+                                        <!-- <i class="fa fa-calendar"></i> -->
+                                        <input type="date" name="datainicial" data-dependent="data-inicial" id="dataInicial" placeholder="Digite o Data Inicial do aluguel" class="aluguel">
                                     </div><!--/.input-->
 
                                     <label>Data Final:</label>
                                     <div class="input">
-                                        <i class="fa fa-calendar"></i>
-                                        <input type="text" name="datafinal" class="date-end date-selector form-controller" placeholder="Data Final">
+                                        <!-- <i class="fa fa-calendar"></i> -->
+                                        <input type="date" name="datafinal" id="dataFinal" placeholder="Digite o Data Final do aluguel" class="aluguel">
                                     </div><!--/.input-->
 
                                     <label class="text-uppercase">Categoria do Caro:</label>
                                     <div class="input">
                                         <i class="fa  fa-car "></i>
-                                        <input type="text" name="Categoria" value="{{$categoria[0]->nome}}">
+                                        <input type="hidden" data-dependent="categoria" id="categoria_id" name="categoria_id" class="aluguel" value="{{$categoria[0]->id_categoria}}">
+                                        <input type="text" value="{{$categoria[0]->nome}}">
                                     </div><!--/.input-->
 
                                     <label class="text-uppercase">Carro:</label>
                                     <div class="input">
                                         <i class="fa  fa-car"></i>
-                                        <input type="text" name="carro" value="{{$dados->modelo}}" placeholder="Carro" class="pick-location form-controller">
+                                        <input type="hidden" name="carro" value="{{$dados->id_carro}}">
+                                        <input type="text" value="{{$dados->modelo}}" placeholder="Carro" class="pick-location form-controller">
                                     </div><!--/.input-->
 
-                                    <label class="text-uppercase">Valor Total da Diária:</label>
-                                    <div class="input">
-                                        <i class="fa fa-dollar"></i>
-                                        <input type="text"  name="vtotal" >
-                                    </div><!--/.input-->
+                                    <label class="meta-item" for="preco" id="preco"></label>
+                                    
+
+
+                                    <!-- <div class="input">
+                                                                             <i class="fa fa-dollar"></i>
+                                                                             <input type="text"  name="vtotal" >
+                                                                         </div> --> <!--/.input-->
+
+
                                 </div><!-- /.form-group -->
                                 </div><!-- /.div regular-search -->
 

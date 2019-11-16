@@ -25,6 +25,7 @@
     <link rel="apple-touch-icon" sizes="72x72" href="{{asset("site/assets/images/apple-touch-icon-72x72.png")}}">
     <link rel="apple-touch-icon" sizes="114x114" href="{{asset("site/assets/images/apple-touch-icon-114x114.png")}}">
 
+     <script src="{{asset("assets/jquery/jquery.min.js")}}"></script>
     <!-- Custom Font
     ================================================== -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Exo:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i%7cRoboto:400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> -->
@@ -63,9 +64,39 @@
         
     <!-- All The JS Files
     ================================================== --> 
+   
     <script src="{{asset("site/assets/js/plugins.min.js")}}"></script>
     <script src="{{asset("site/assets/js/carrent.min.js")}}"></script> <!-- main-js -->
 
+
     <script src="{{asset("site/assets/jquery-ui/jquery-ui.min.js")}}"></script> <!-- main-js -->
+    <script>
+    console.log('teste');
+        $('.aluguel').change(function() {
+                var categoria = $('input[name="categoria_id"]').val();
+                var datainicial = $('input[name="datainicial"]').val();
+                var datafinal = $('input[name="datafinal"]').val();
+                debugger
+            if(categoria){
+              if (datafinal != '' && datainicial) {
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{URL::route('calculo')}}",
+                    method: "POST",
+                    data: {
+                      datainicial: datainicial,
+                      datafinal: datafinal,
+                      _token: _token,
+                      categoria: categoria
+                    },
+                    success: function(result) {
+                        $('#preco').empty();
+                        $('#preco').append('Valor da Diária: R$'+result);
+                    }
+                });
+            }
+          }
+        });
+</script>
 </body>
 </html>

@@ -21,8 +21,11 @@ Route::group(['middleware'=>['auth']],function(){
 	});
 	
 });
-Route::get('reserva/{id_carro}', 'InicioController@reserva');
 Route::resource('inicio', 'InicioController');
+Route::get('reserva/{id_carro}', 'InicioController@reserva');
+Route::post('reserva', 'InicioController@reservastore');
+
+
 
 Route::resource('usuario', 'UsersController'); 
 Route::resource('cliente', 'ClientesController');   
