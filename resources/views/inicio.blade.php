@@ -35,7 +35,7 @@
                             @else
                             <a href="{{ url('reserva',$value->id_carro)}}">
                             @endif
-                                <img src="{{asset("site/assets/images/popular/popular-01.png")}}" alt="car-item" />
+                            <img src="{{ url("storage/fotos_carros/{$value->imagem}") }}" alt="car-item" />
                             </a>
                         </div><!-- /.vehicle-thumbnail -->
                         <div class="vehicle-bottom-content">

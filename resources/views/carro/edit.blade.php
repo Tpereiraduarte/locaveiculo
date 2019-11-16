@@ -16,7 +16,7 @@
         <div class="box-header with-border">
           <h3 class="box-title">Edição do carro</h3>
         </div>
-        <form role="form" action="{{ action('CarrosController@update', $dados->id_carro) }}" method="POST">
+        <form role="form" action="{{ action('CarrosController@update', $dados->id_carro) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
           <div class="box-body">

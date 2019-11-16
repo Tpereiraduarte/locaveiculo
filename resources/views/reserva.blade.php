@@ -7,7 +7,7 @@
                         <div class="gallery">
                              <div class="full-view owl-carousel">
                                   <a class="item" href="{{asset("site/assets/images/post/list-image-three.jpg")}}">
-                                      <img src="{{asset("site/assets/images/post/post01.jpg")}}" alt="post">
+                                       <img src="{{ url("storage/fotos_carros/{$dados->imagem}") }}"" alt="car-item" />
                                   </a>
                               </div>
                         </div> <!-- /.gallery-two -->

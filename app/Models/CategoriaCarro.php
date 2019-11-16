@@ -20,7 +20,7 @@ class CategoriaCarro extends Model
     	return $this->belongsTo(Categoria::class,'categoria_id','id_categoria');
     }
  public function carro(){
-    	return $this->belongsTo(Carro::class,'carro_id','id_carro');
+    	return $this->hasMany(Carro::class,'id_carro','carro_id');
     }
     public function aluguel(){
         return $this->belongsTo(Aluguel::class,'id_categoria_carro','categoria_carro_id');

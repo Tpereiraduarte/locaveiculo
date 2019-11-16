@@ -16,7 +16,7 @@
         <div class="box-header with-border">
           <h3 class="box-title">Cadastro de carros</h3>
         </div>
-        <form role="form" action="{{ action('CarrosController@store') }}" method="POST">
+        <form role="form" action="{{ action('CarrosController@store') }}" method="POST" enctype="multipart/form-data">
         @csrf
           <div class="box-body">
             <div class="form-group">

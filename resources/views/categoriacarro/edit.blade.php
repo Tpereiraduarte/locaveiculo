@@ -34,7 +34,7 @@
           <div class="form-group">
               <label for="carro">Carro:</label>
               <select class="form-control" id="carro_id" name="carro_id" aria-required="true">
-                  <option value="{{$dados->carro_id}}" selected>{{$dados->carro->modelo}}</option>
+                  <option value="{{$dados->carro_id}}" selected>{{$dados->carro[0]->modelo}}</option>
                   @foreach($carro as $value)
                       @if($dados->carro_id != $value->id_carro)
                           <option value="{{$value->id_carro}}">{{$value->modelo}}</option>

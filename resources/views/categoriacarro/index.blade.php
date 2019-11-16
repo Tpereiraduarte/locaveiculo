@@ -28,7 +28,7 @@
                         @foreach($dados as $value)
                     <tr>
                         <td>{{$value->categoria->nome}}</td>
-                        <td>{{$value->carro->modelo}}</td>
+                        <td>{{$value->carro[0]->modelo}}</td>
                         <td class="acoes-lista">
                             <a id="edit" href="{{URL::route('categoriacarro.edit',$value->id_categoria_carro)}}" title="Editar" class="fa fa-edit"></a>
                             <form action="{{ action('CategoriaCarrosController@destroy', $value->id_categoria_carro) }}" method="POST">

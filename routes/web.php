@@ -19,19 +19,18 @@ Route::group(['middleware'=>['auth']],function(){
 		Auth::logout();
 		return redirect()->action('LoginController@index');            
 	});
-	
+	Route::resource('usuario', 'UsersController'); 
+	Route::resource('cliente', 'ClientesController');   
+	Route::resource('categoria', 'CategoriasController');
+	Route::resource('carro', 'CarrosController');
+	Route::post('aluguel/calculo', 'AluguelsController@calculoValorAluguelDinamico')->name('calculo');
+	Route::post('aluguel/dinamico', 'AluguelsController@dinamico')->name('dinamico');
+	Route::resource('aluguel', 'AluguelsController');
+	Route::resource('categoriacarro', 'CategoriaCarrosController');
 });
 Route::resource('inicio', 'InicioController');
-Route::get('reserva/{id_carro}', 'InicioController@reserva');
 Route::post('reserva', 'InicioController@reservastore');
+Route::get('reserva/{id_carro}', 'InicioController@reserva');
 
 
 
-Route::resource('usuario', 'UsersController'); 
-Route::resource('cliente', 'ClientesController');   
-Route::resource('categoria', 'CategoriasController');
-Route::resource('carro', 'CarrosController');
-Route::post('aluguel/calculo', 'AluguelsController@calculoValorAluguelDinamico')->name('calculo');
-Route::post('aluguel/dinamico', 'AluguelsController@dinamico')->name('dinamico');
-Route::resource('aluguel', 'AluguelsController');
-Route::resource('categoriacarro', 'CategoriaCarrosController');
